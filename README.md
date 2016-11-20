@@ -23,7 +23,8 @@ This is a demo of `git-also` applied on three.js library:
 ```
 
 This means that file `Object3D.js` is most often comitted with `Geometry.js` -
-the both appear in the same commit `51` times!
+they both appear in the same commit `51` times! By looking at this output
+you can immediately see core pieces of three.js.
 
 The `Similarity` column shows [`Jaccard index`](https://en.wikipedia.org/wiki/Jaccard_index)
 of two files.
@@ -58,7 +59,7 @@ If you run it without arguments it prints help:
 
 # motivation
 
-Files are often comitted together when developers improve code or add new features.
+Files are often committed together when developers improve code or add new features.
 This information could serve as a hint when you are exploring new code:
 
 * What are related file to this file?
