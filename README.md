@@ -1,7 +1,32 @@
 # git-also
 
-For a `file` in your git repository prints other files that are most often
-committed together.
+For a `file` in your git repository prints other files that are most often committed together.
+
+![demo](https://raw.githubusercontent.com/anvaka/git-also/master/docs/demo.gif)
+
+This is a demo of `git-also` applied on three.js library:
+
+```
+> src/core/Object3D.js most often commited with:
+
+# together	Similarity	Name
+        51	      0.22	src/core/Geometry.js
+        48	      0.21	src/renderers/WebGLRenderer.js
+        45	      0.19	build/Three.js
+        43	      0.18	src/materials/Material.js
+        36	      0.15	build/custom/ThreeWebGL.js
+        36	      0.15	src/cameras/Camera.js
+        35	      0.15	build/custom/ThreeCanvas.js
+        34	      0.15	build/custom/ThreeSVG.js
+        34	      0.15	build/custom/ThreeDOM.js
+        32	      0.14	src/core/BufferGeometry.js
+```
+
+This means that file `Object3D.js` is most often comitted with `Geometry.js` -
+the both appear in the same commit `51` times!
+
+The `Similarity` column shows [`Jaccard index`](https://en.wikipedia.org/wiki/Jaccard_index)
+of two files.
 
 # usage
 
@@ -16,10 +41,6 @@ Run it from command line inside your git repository:
 ```
 git also <file>
 ```
-
-This is a demo of `git-also` applied on three.js library:
-
-![demo](https://raw.githubusercontent.com/anvaka/git-also/master/docs/demo.gif)
 
 If you run it without arguments it prints help:
 
