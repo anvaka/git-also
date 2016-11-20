@@ -2,6 +2,7 @@
 //
 // git log --name-only --pretty=format:""
 //
+// NOTE: use git-also.js if you wan to run this in the git repository
 var readline = require('readline');
 var fs = require('fs');
 var computeSimilarities = require('./lib/computeSimilarities.js');
