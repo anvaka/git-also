@@ -1,6 +1,6 @@
 {
   "name": "git-also",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "For a `file` in your git repository prints other files that are most often committed together",
   "main": "index.js",
   "scripts": {
