@@ -7,7 +7,7 @@ For a `file` in your git repository prints other files that are most often commi
 This is a demo of `git-also` applied on three.js library:
 
 ```
-> src/core/Object3D.js most often commited with:
+> src/core/Object3D.js most often committed with:
 
 # together	Similarity	Name
         51	      0.22	src/core/Geometry.js
@@ -22,7 +22,7 @@ This is a demo of `git-also` applied on three.js library:
         32	      0.14	src/core/BufferGeometry.js
 ```
 
-This means that file `Object3D.js` is most often comitted with `Geometry.js` -
+This means that file `Object3D.js` is most often committed with `Geometry.js` -
 they both appear together in `51` commits! By looking at this output
 you can immediately see core pieces of three.js.
 
