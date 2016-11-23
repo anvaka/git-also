@@ -1,7 +1,7 @@
 {
   "name": "git-also",
   "version": "1.0.2",
-  "description": "For a `file` in your git repository prints other files that are most often committed together",
+  "description": "For a `file` in your git repository, prints other files that are most often committed together",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

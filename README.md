@@ -1,6 +1,6 @@
 # git-also
 
-For a `file` in your git repository prints other files that are most often committed together.
+For a `file` in your git repository, prints other files that are most often committed together.
 
 ![demo](https://raw.githubusercontent.com/anvaka/git-also/master/docs/demo.gif)
 
