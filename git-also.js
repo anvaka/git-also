@@ -17,17 +17,20 @@ if (program.args.length !== 1) {
 }
 
 // Only commits that have this file will be counted:
-var fileLookup = path.normalize(program.args[0])
+var fileLookup = path.resolve(program.args[0])
+var dirName = path.dirname(fileLookup);
+process.chdir(dirName);
 
+fileLookup = path.normalize(fileLookup);
 // in cygwin/windows the lookup path is "Root\Lib\file.c", while git shows it as
 // "Root/Lib/file.c". Changing:
 fileLookup = fileLookup.replace(/\\/g, '/');
 
 var chilidProcess = require('child_process')
 
-fixRelativePaths(processGitLogs);
+fixNestedPaths(processGitLogs);
 
-function fixRelativePaths(finishedCallback) {
+function fixNestedPaths(finishedCallback) {
   var cmd = 'git rev-parse --show-toplevel';
   chilidProcess.exec(cmd, function(error, stdout, stderr) {
     if (error) {
@@ -38,15 +41,12 @@ function fixRelativePaths(finishedCallback) {
       process.exit(2);
     }
 
-    // stdout usually has \n at the end - remove it
+    // stdout has \n at the end - remove it
     var gitRoot = stdout.trim();
-    // then we take current working directory, and clip it from the root
-    // e.g.:
-    // /foo/bar/lib <- cwd
-    // /foo/bar/ <- git root
-    // if You do substring on (cwd.length + 1) - the result will be `lib`.
-    var prefix =  process.cwd().substring(gitRoot.length + 1);
-    if (prefix) fileLookup = prefix + '/' + fileLookup;
+    // fileLookup is guaranteed to have gitRoot in it (since we've done path.resolve aboce)
+    // just remove the git root, and that will give us relative file name (which is printed
+    // by `git log` output)
+    fileLookup = fileLookup.substring(gitRoot.length + 1);
     finishedCallback();
   });
 }
