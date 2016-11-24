@@ -16,7 +16,10 @@ if (program.args.length !== 1) {
   return;
 }
 
-var fileLookup = path.normalize(program.args[0]);
+var fileLookup = path.normalize(program.args[0])
+// in cygwin/windows the lookup path is "Root\Lib\file.c", while git shows it as
+// "Root/Lib/file.c". Changing:
+fileLookup = fileLookup.replace(/\\/g, '/');
 
 var buffer = [];
 var commits = [];
