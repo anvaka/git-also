@@ -18,8 +18,21 @@ if (program.args.length !== 1) {
 
 // Only commits that have this file will be counted:
 var fileLookup = path.resolve(program.args[0])
-var dirName = path.dirname(fileLookup);
-process.chdir(dirName);
+
+// Change working directory based on input path
+try {
+    var dirName = path.dirname(fileLookup);
+    process.chdir(dirName);
+} catch(error) {
+    if (error.code === 'ENOENT') {
+        console.log('no such directory: ' + dirName);
+        process.exitCode = 1;
+    } else {
+        // re-raise the error if it's not an ENOENT
+        throw(error);
+    }
+    return;
+}
 
 fileLookup = path.normalize(fileLookup);
 // in cygwin/windows the lookup path is "Root\Lib\file.c", while git shows it as
