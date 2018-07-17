@@ -26,13 +26,13 @@ fileLookup = path.normalize(fileLookup);
 // "Root/Lib/file.c". Changing:
 fileLookup = fileLookup.replace(/\\/g, '/');
 
-var chilidProcess = require('child_process')
+var childProcess = require('child_process')
 
 fixNestedPaths(processGitLogs);
 
 function fixNestedPaths(finishedCallback) {
   var cmd = 'git rev-parse --show-toplevel';
-  chilidProcess.exec(cmd, function(error, stdout, stderr) {
+  childProcess.exec(cmd, function(error, stdout, stderr) {
     if (error) {
       if (stderr) console.log(stderr);
       else {
@@ -55,7 +55,7 @@ function processGitLogs() {
   var buffer = [];
   var commits = [];
 
-  var git = chilidProcess.spawn('git', ['log', '--name-only', '--pretty=format:""']);
+  var git = childProcess.spawn('git', ['log', '--name-only', '--pretty=format:""']);
 
   var rl = readline.createInterface({ input: git.stdout });
   rl.on('line', processLine).on('close', printResults);
