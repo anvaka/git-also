@@ -43,7 +43,7 @@ function fixNestedPaths(finishedCallback) {
 
     // stdout has \n at the end - remove it
     var gitRoot = stdout.trim();
-    // fileLookup is guaranteed to have gitRoot in it (since we've done path.resolve aboce)
+    // fileLookup is guaranteed to have gitRoot in it (since we've done path.resolve above)
     // just remove the git root, and that will give us relative file name (which is printed
     // by `git log` output)
     fileLookup = fileLookup.substring(gitRoot.length + 1);
