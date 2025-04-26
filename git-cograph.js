@@ -46,7 +46,7 @@ function processGitLogs() {
       let fromNode = graph.getNode(link.fromId);
       let toNode = graph.getNode(link.toId);
       let committedTogether = link.data.count;
-      if (!(fromNode.id.match(/^src/) || toNode.id.match(/^src/))) return;
+      // if (!(fromNode.id.match(/^src/) || toNode.id.match(/^src/))) return;
 
       if (fromNode.data.count > nodeFilterThreshold ||
           toNode.data.count > nodeFilterThreshold) {
@@ -59,10 +59,12 @@ function processGitLogs() {
 
     scores.sort((a, b) => b.score - a.score);
 
-    let mean = scores.reduce((a, b) => a + b.score, 0) / scores.length;
-    let stdDev = Math.sqrt(scores.reduce((a, b) => a + Math.pow(b.score - mean, 2), 0) / scores.length);
+    if (scores.length > 0) {
+      let mean = scores.reduce((a, b) => a + b.score, 0) / scores.length;
+      let stdDev = Math.sqrt(scores.reduce((a, b) => a + Math.pow(b.score - mean, 2), 0) / scores.length);
 
-    console.warn('Mean: ', mean, 'StdDev: ', stdDev);
+      console.warn('Jaccard similarity mean: ', mean, '; StdDev: ', stdDev);
+    }
     console.log('graph G {')
     scores.forEach(({link, score}) => {
       if (score > mean + stdDev) {
